@@ -1,18 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
+
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      allCustomers: [],
+      allMovies: [],
+      tmdbId: null,
+      customerId: null,
+      movieId: null,
+      errorMessage: null
+    }
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:3000/movies')
+      .then((response) => {
+        console.log('this is response.data', response.data);
+
+        this.setState({
+          allMovies: response.data
+        })
+        console.log('im in component did mount', this.state.allMovies);
+
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: error.message
+        })
+      })
+
+  }
+
   render() {
+
+
+
+
+
+
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+
+        
       </div>
     );
   }
