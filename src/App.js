@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import './App.css';
-import { all } from 'q';
+
+
 
 class App extends Component {
   constructor(props) {
@@ -15,20 +17,20 @@ class App extends Component {
       tmdbId: null,
       customerId: null,
       movieId: null,
-      errorMessage: null
+      errorMessage: null,
+      displayStatus: false
     }
   }
+
 
   componentDidMount() {
     axios.get('http://localhost:3000/movies')
       .then((response) => {
 
+
         this.setState({
           allMovies: response.data,
         });
-
-        console.log('im in component did mount', this.state.allMovies);
-        
 
       })
       .catch((error) => {
@@ -37,7 +39,6 @@ class App extends Component {
         })
       })
 
-      // console.log('what is this?', this);
   }
 
   setAllCustomers = (customerArray) => {
@@ -46,62 +47,73 @@ class App extends Component {
     })
     console.log('hi', this.state.allCustomers);
   }
+  
+  toggleDisplayStatus = () => {
+    console.log("I'm in toggleAllMovies Function!");
+    this.setState({
+      displayStatus: !this.state.displayStatus,
+    });
+  }
 
-  // listAllCustomers = () => {
-  //   axios.get('http://localhost:3000/customers')
-  //     .then((response) => {
-
-  //       console.log('customer response.data', response.data);
-
-  //       this.setState({
-  //         allCustomers: response.data,
-  //       });
-
-  //       console.log('in listAllCustomers', this.state.allCustomers);
-
-  //     })
-  //     .catch((error) => {
-  //       this.setState({
-  //         errorMessage: error.message
-  //       })
-  //     })
-  // }
+  selectMovie = (id) => {
+    return () => {
+      this.setState({
+        movieId: id,
+      });
+    }
+  }
+  
+  
 
   render() {
-    const { allMovies, allCustomers } = this.state;
+    console.log(this.state.movieId);
 
-    const mappedMovies = allMovies.map((movie, i) => {
-      return <Library
-        key={i}
-        {...movie}
-      />
-    });
+    const {allCustomers, allMovies} = this.state;
 
-
-
-
-    return (
-      <div>
-        <h3>All Movies</h3>
+    return(
+      <Router>
         <div>
-          {mappedMovies}
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
 
-        </div>
+            <li>
+              <Link to="/movies">Movies</Link>
+            </li>
 
-        <div>
-          <Customers
+            <li>
+            <Link to="/customers">Customers</Link>
+            </li>
+
+          </ul>
+
+          <hr />
+
+          <Route path="/" />
+          <Route path="/movies" 
+            render={(props) => 
+              <Library 
+                allMovies={this.state.allMovies} displayStatus={this.state.displayStatus}toggleDisplayStatusCallback={this.toggleDisplayStatus} 
+                onSelectMovie={this.selectMovie}
+                isAuthed = { true} 
+              />
+            } 
+          />
+          <Route path="/customers"
+          render={(props) => 
+            <Customers
             setAllCustomersCallback={this.setAllCustomers}
             customers={allCustomers}
-            
-
+            isAuthed = {true}
           />
-
+          }
+          />
         </div>
+      </Router>
 
-
-      </div>
     );
   }
-}
+  }
 
 export default App;
