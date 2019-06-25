@@ -3,6 +3,7 @@ import axios from 'axios';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import './App.css';
+import { all } from 'q';
 
 class App extends Component {
   constructor(props) {
@@ -27,26 +28,7 @@ class App extends Component {
         });
 
         console.log('im in component did mount', this.state.allMovies);
-
-      })
-      .catch((error) => {
-        this.setState({
-          errorMessage: error.message
-        })
-      })
-  }
-
-  listAllCustomers = () => {
-    axios.get('http://localhost:3000/customers')
-      .then((response) => {
-
-        console.log('customer response.data', response.data);
-
-        this.setState({
-          allCustomers: response.data,
-        });
-
-        console.log('in listAllCustomers', this.state.allCustomers);
+        
 
       })
       .catch((error) => {
@@ -55,7 +37,35 @@ class App extends Component {
         })
       })
 
+      // console.log('what is this?', this);
   }
+
+  setAllCustomers = (customerArray) => {
+    this.setState({
+      allCustomers: customerArray,
+    })
+    console.log('hi', this.state.allCustomers);
+  }
+
+  // listAllCustomers = () => {
+  //   axios.get('http://localhost:3000/customers')
+  //     .then((response) => {
+
+  //       console.log('customer response.data', response.data);
+
+  //       this.setState({
+  //         allCustomers: response.data,
+  //       });
+
+  //       console.log('in listAllCustomers', this.state.allCustomers);
+
+  //     })
+  //     .catch((error) => {
+  //       this.setState({
+  //         errorMessage: error.message
+  //       })
+  //     })
+  // }
 
   render() {
     const { allMovies, allCustomers } = this.state;
@@ -67,7 +77,8 @@ class App extends Component {
       />
     });
 
-  
+
+
 
     return (
       <div>
@@ -78,12 +89,16 @@ class App extends Component {
         </div>
 
         <div>
-          <Customers 
-          listAllCustomersCallback={this.listAllCustomers}/>
+          <Customers
+            setAllCustomersCallback={this.setAllCustomers}
+            customers={allCustomers}
             
+
+          />
+
         </div>
 
-        
+
       </div>
     );
   }
