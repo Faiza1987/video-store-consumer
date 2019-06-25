@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import Library from './components/Library';
+import Customers from './components/Customers';
 import './App.css';
 
 
@@ -19,6 +20,7 @@ class App extends Component {
       displayStatus: false
     }
   }
+
 
   componentDidMount() {
     console.log('I AM IN COMPONENT DID MOUNT')
@@ -50,14 +52,40 @@ class App extends Component {
 
   render() {
     return(
-      <div>
-        <Library
-          allMovies={this.state.allMovies}
-          displayStatus={this.state.displayStatus}
-          toggleDisplayStatusCallback={this.toggleDisplayStatus}
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+
+            <li>
+              <Link to="/movies">Movies</Link>
+            </li>
+          </ul>
+
+          <hr />
+
+          <Route path="/" />
+          <Route path="/movies" 
+            render={(props) => 
+              <Library 
+                allMovies={this.state.allMovies} displayStatus={this.state.displayStatus}toggleDisplayStatusCallback={this.toggleDisplayStatus} 
+                isAuthed = { true} 
+              />
+            } 
+          />
+        </div>
+      </Router>
+
+      // <div>
+      //   <Library
+      //     allMovies={this.state.allMovies}
+      //     displayStatus={this.state.displayStatus}
+      //     toggleDisplayStatusCallback={this.toggleDisplayStatus}
           
-        />
-      </div>
+      //   />
+      // </div>
     );
   }
 }
