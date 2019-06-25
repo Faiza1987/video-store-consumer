@@ -6,6 +6,10 @@ class Customers extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            displayCustomerList: false
+        }
+
     }
 
     componentDidMount() {
@@ -18,34 +22,36 @@ class Customers extends Component {
 
                 this.props.setAllCustomersCallback(response.data);
             })
-
     }
-
 
 
     onClickListCustomers = (props) => {
-
-        console.log('This is in onClickListCustomers:', this.props.customers)
+        this.setState({
+            displayCustomerList: true
+        })
     }
-
-    // mappedCustomers = props.customers.map((customer, i) => {
-    //     return (
-    //         <div key={i}>
-    //             <div>{customer.name}</div>
-    //         </div>
-    //     )
-    // });
-
-
-
-
+    
+    
     render() {
+
+        const {displayCustomerList} = this.state;
+        const {customers} = this.props;
+
+        const mappedCustomers = customers.map((customer, i) => {
+            return (
+                <div key={i}>
+                    <div>{customer.name}</div>
+                </div>
+            )
+        });
+
+
         return (
 
             <div>
-                <div>
-                    placeholder
-                </div>
+                {displayCustomerList && <div>
+                    {mappedCustomers}
+                </div>}
 
                 <button type='button' onClick={this.onClickListCustomers}>List all Customers</button>
 
