@@ -4,7 +4,7 @@ import axios from 'axios';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import './App.css';
-import { thisTypeAnnotation } from '@babel/types';
+
 
 
 class App extends Component {
@@ -24,30 +24,30 @@ class App extends Component {
 
 
   componentDidMount() {
-    console.log('I AM IN COMPONENT DID MOUNT')
     axios.get('http://localhost:3000/movies')
       .then((response) => {
-
-        
-        console.log('this is response.data', response.data);
 
 
         this.setState({
           allMovies: response.data,
-          movieId: response.data.id,
         });
 
-        console.log('im in component did mount', this.state.allMovies);
-
-        
       })
       .catch((error) => {
         this.setState({
           errorMessage: error.message
         })
       })
+
   }
 
+  setAllCustomers = (customerArray) => {
+    this.setState({
+      allCustomers: customerArray,
+    })
+    console.log('hi', this.state.allCustomers);
+  }
+  
   toggleDisplayStatus = () => {
     console.log("I'm in toggleAllMovies Function!");
     this.setState({
@@ -62,9 +62,14 @@ class App extends Component {
       });
     }
   }
+  
+  
 
   render() {
     console.log(this.state.movieId);
+
+    const {allCustomers, allMovies} = this.state;
+
     return(
       <Router>
         <div>
@@ -75,6 +80,10 @@ class App extends Component {
 
             <li>
               <Link to="/movies">Movies</Link>
+            </li>
+
+            <li>
+            <Link to="/customers">Customers</Link>
             </li>
 
           </ul>
@@ -91,11 +100,20 @@ class App extends Component {
               />
             } 
           />
+          <Route path="/customers"
+          render={(props) => 
+            <Customers
+            setAllCustomersCallback={this.setAllCustomers}
+            customers={allCustomers}
+            isAuthed = {true}
+          />
+          }
+          />
         </div>
       </Router>
 
     );
   }
-}
+  }
 
 export default App;
