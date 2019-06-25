@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import Library from './components/Library';
 import './App.css';
 
 class App extends Component {
@@ -20,11 +20,13 @@ class App extends Component {
   componentDidMount() {
     axios.get('http://localhost:3000/movies')
       .then((response) => {
+
         console.log('this is response.data', response.data);
 
         this.setState({
-          allMovies: response.data
-        })
+          allMovies: response.data,
+        });
+
         console.log('im in component did mount', this.state.allMovies);
 
       })
@@ -37,17 +39,17 @@ class App extends Component {
   }
 
   render() {
+    const mappedMovies = this.state.allMovies.map((movie, i) => {
+      return <Library
+        key={i}
+        {...movie}
+      />
+    });
 
-
-
-
-
-
-
-    return (
+    return(
       <div>
-
-        
+        <h3>All Movies</h3>
+        {mappedMovies}
       </div>
     );
   }
