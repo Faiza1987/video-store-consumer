@@ -4,6 +4,7 @@ import axios from 'axios';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import './App.css';
+import { thisTypeAnnotation } from '@babel/types';
 
 
 class App extends Component {
@@ -27,14 +28,18 @@ class App extends Component {
     axios.get('http://localhost:3000/movies')
       .then((response) => {
 
+        
         console.log('this is response.data', response.data);
+
 
         this.setState({
           allMovies: response.data,
+          movieId: response.data.id,
         });
 
         console.log('im in component did mount', this.state.allMovies);
 
+        
       })
       .catch((error) => {
         this.setState({
@@ -50,7 +55,16 @@ class App extends Component {
     });
   }
 
+  selectMovie = (id) => {
+    return () => {
+      this.setState({
+        movieId: id,
+      });
+    }
+  }
+
   render() {
+    console.log(this.state.movieId);
     return(
       <Router>
         <div>
@@ -62,6 +76,7 @@ class App extends Component {
             <li>
               <Link to="/movies">Movies</Link>
             </li>
+
           </ul>
 
           <hr />
@@ -71,6 +86,7 @@ class App extends Component {
             render={(props) => 
               <Library 
                 allMovies={this.state.allMovies} displayStatus={this.state.displayStatus}toggleDisplayStatusCallback={this.toggleDisplayStatus} 
+                onSelectMovie={this.selectMovie}
                 isAuthed = { true} 
               />
             } 
@@ -78,14 +94,6 @@ class App extends Component {
         </div>
       </Router>
 
-      // <div>
-      //   <Library
-      //     allMovies={this.state.allMovies}
-      //     displayStatus={this.state.displayStatus}
-      //     toggleDisplayStatusCallback={this.toggleDisplayStatus}
-          
-      //   />
-      // </div>
     );
   }
 }

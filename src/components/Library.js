@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
+import './Library.css';
 
 
 const Library = (props) => {
   
   const mappedMovies = props.allMovies.map((movie, i) => {
     return(
-      <p key={i}> {movie.title} </p>
+      <button key={i} onClick={props.onSelectMovie(movie.id)} className="movie-button"> {movie.title} </button>
     );
   });
 
@@ -21,7 +21,6 @@ const Library = (props) => {
     
       {props.displayStatus && <section>
         {mappedMovies}
-     
       </section>}
 
     </div>
