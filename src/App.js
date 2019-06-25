@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Library from './components/Library';
+import Customers from './components/Customers';
 import './App.css';
 
 class App extends Component {
@@ -21,8 +22,6 @@ class App extends Component {
     axios.get('http://localhost:3000/movies')
       .then((response) => {
 
-        console.log('this is response.data', response.data);
-
         this.setState({
           allMovies: response.data,
         });
@@ -35,21 +34,56 @@ class App extends Component {
           errorMessage: error.message
         })
       })
+  }
+
+  listAllCustomers = () => {
+    axios.get('http://localhost:3000/customers')
+      .then((response) => {
+
+        console.log('customer response.data', response.data);
+
+        this.setState({
+          allCustomers: response.data,
+        });
+
+        console.log('in listAllCustomers', this.state.allCustomers);
+
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: error.message
+        })
+      })
 
   }
 
   render() {
-    const mappedMovies = this.state.allMovies.map((movie, i) => {
+    const { allMovies, allCustomers } = this.state;
+
+    const mappedMovies = allMovies.map((movie, i) => {
       return <Library
         key={i}
         {...movie}
       />
     });
 
-    return(
+  
+
+    return (
       <div>
         <h3>All Movies</h3>
-        {mappedMovies}
+        <div>
+          {mappedMovies}
+
+        </div>
+
+        <div>
+          <Customers 
+          listAllCustomersCallback={this.listAllCustomers}/>
+            
+        </div>
+
+        
       </div>
     );
   }
