@@ -6,6 +6,7 @@ class Library extends Component {
   constructor(props){
     super(props);
 
+<<<<<<< HEAD
     this.state = {
       displayMovieList: false
     }
@@ -16,6 +17,21 @@ class Library extends Component {
       .then((response) => {
 
         console.log('movie response.data', response.data);
+=======
+const Library = (props) => {
+
+    const mappedMovies = props.allMovies.map((movie, i) => {
+        return (
+
+            <div key={i}>
+                <div onClick={props.onSelectMovie(movie.id)}>
+                    {movie.title}
+                </div>
+            </div>
+
+    );
+    });
+>>>>>>> hki-customers
 
         this.props.setAllMoviesCallback(response.data);
       })
@@ -26,6 +42,7 @@ class Library extends Component {
       })
   }
 
+<<<<<<< HEAD
   toggleDisplayMovieList = (props) => {
     console.log("I'm in toggleAllMovies Function!");
     this.setState({
@@ -56,6 +73,23 @@ class Library extends Component {
       </div>
     );
   }
+=======
+    return (
+        <div>
+            <section>
+                <button type='button' onClick={props.toggleDisplayStatusCallback}>
+                    See All Movies
+        </button>
+            </section>
+
+            {props.displayStatus && <section>
+                {mappedMovies}
+            </section>}
+
+        </div>
+
+    );
+>>>>>>> hki-customers
 }
 
 export default Library;

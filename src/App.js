@@ -35,6 +35,15 @@ class App extends Component {
       });
     }
   }
+
+  selectCustomer = (id) => {
+    // console.log(id);
+    return () => {
+      this.setState({
+      customerId: id,
+    })
+  }
+}
   
   setAllCustomers = (customerArray) => {
     this.setState({
@@ -45,7 +54,9 @@ class App extends Component {
   
 
   render() {
-    console.log(this.state.movieId);
+    console.log('Movie id: ', this.state.movieId);
+
+    console.log('Customer id: ', this.state.customerId);
 
     const {allCustomers, allMovies} = this.state;
 
@@ -84,14 +95,13 @@ class App extends Component {
             } 
           />
           <Route path="/customers"
-            render={(props) => 
-              <Customers
-                setAllCustomersCallback={this.setAllCustomers}
-                customers={allCustomers}
-                isAuthed={true}
-              />
-            }
-          />
+          render={(props) => 
+            <Customers
+            setAllCustomersCallback={this.setAllCustomers}
+            customers={allCustomers}
+            selectCustomerCallback={this.selectCustomer}
+            isAuthed = {true}
+          />}/>
           <Route path="/search" 
             render={(props) => 
               <Search 
@@ -104,6 +114,7 @@ class App extends Component {
 
     );
   }
-  }
+}
+
 
 export default App;

@@ -30,7 +30,7 @@ class Customers extends Component {
             displayCustomerList: true
         })
     }
-    
+
     
     render() {
 
@@ -39,8 +39,8 @@ class Customers extends Component {
 
         const mappedCustomers = customers.map((customer, i) => {
             return (
-                <div key={i}>
-                    <div>{customer.name}</div>
+                <div key={i} >
+                    <div onClick={this.props.selectCustomerCallback(customer.id)}>{customer.name}</div>
                 </div>
             )
         });
