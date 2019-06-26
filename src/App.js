@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import Library from './components/Library';
 import Customers from './components/Customers';
+import Search from './components/Search';
 import './App.css';
 
 
@@ -61,9 +62,12 @@ class App extends Component {
             </li>
 
             <li>
-            <Link to="/customers">Customers</Link>
+              <Link to="/customers">Customers</Link>
             </li>
 
+            <li>
+              <Link to="/search">Search</Link>
+            </li>
           </ul>
 
           <hr />
@@ -85,6 +89,13 @@ class App extends Component {
                 setAllCustomersCallback={this.setAllCustomers}
                 customers={allCustomers}
                 isAuthed={true}
+              />
+            }
+          />
+          <Route path="/search" 
+            render={(props) => 
+              <Search 
+              
               />
             }
           />
