@@ -44,13 +44,13 @@ class Library extends Component {
     });
     return(
       <div>
-        <section>
-          <button type='button' onClick={this.toggleDisplayMovieList}>
+        <section >
+          <button type='button' onClick={this.toggleDisplayMovieList} className="movie-list">
             See All Movies
           </button>
         </section>
       
-        {displayMovieList && <section>
+        {displayMovieList && <section className="movies">
           {mappedMovies}
         </section>}
       </div>

@@ -1,3 +1,12 @@
 .movie-button {
   border: none;
 }
+
+.movies {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-list {
+  align-content: center;
+}
