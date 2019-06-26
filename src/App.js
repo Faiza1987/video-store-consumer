@@ -18,43 +18,42 @@ class App extends Component {
       customerId: null,
       movieId: null,
       errorMessage: null,
-      displayStatus: false
+      // displayStatus: false
     }
   }
 
 
-  componentDidMount() {
-    axios.get('http://localhost:3000/movies')
-      .then((response) => {
+  // componentDidMount() {
+  //   axios.get('http://localhost:3000/movies')
+  //     .then((response) => {
 
 
-        this.setState({
-          allMovies: response.data,
-        });
+  //       this.setState({
+  //         allMovies: response.data,
+  //       });
 
-      })
-      .catch((error) => {
-        this.setState({
-          errorMessage: error.message
-        })
-      })
+  //     })
+  //     .catch((error) => {
+  //       this.setState({
+  //         errorMessage: error.message
+  //       })
+  //     })
+  // }
 
-  }
-
-  setAllCustomers = (customerArray) => {
+  setAllMovies = (moviesArray) => {
     this.setState({
-      allCustomers: customerArray,
-    })
-    console.log('hi', this.state.allCustomers);
-  }
-  
-  toggleDisplayStatus = () => {
-    console.log("I'm in toggleAllMovies Function!");
-    this.setState({
-      displayStatus: !this.state.displayStatus,
+      allMovies: moviesArray,
     });
   }
-
+  
+  
+  // toggleDisplayMovieList = () => {
+  //   console.log("I'm in toggleAllMovies Function!");
+  //   this.setState({
+  //     displayMovieList: !this.state.displayMovieList,
+  //   });
+  // }
+  
   selectMovie = (id) => {
     return () => {
       this.setState({
@@ -63,6 +62,12 @@ class App extends Component {
     }
   }
   
+  setAllCustomers = (customerArray) => {
+    this.setState({
+      allCustomers: customerArray,
+    })
+    console.log('hi', this.state.allCustomers);
+  }
   
 
   render() {
@@ -94,9 +99,10 @@ class App extends Component {
           <Route path="/movies" 
             render={(props) => 
               <Library 
-                allMovies={this.state.allMovies} displayStatus={this.state.displayStatus}toggleDisplayStatusCallback={this.toggleDisplayStatus} 
+                setAllMoviesCallback={this.setAllMovies}
+                movies={allMovies}
                 onSelectMovie={this.selectMovie}
-                isAuthed = { true} 
+                isAuthed={true} 
               />
             } 
           />
