@@ -19,17 +19,28 @@ class Rental extends Component {
     //   from https://stackoverflow.com/questions/563406/add-days-to-javascript-date
     
     
-    // rentMovie = (movie, customer) => {
-    //     axios.post(`http://localhost:3000/rentals/${movie}/check-out`, movie, customer, this.addDays(Date.now(), 7))
-    //         .then((response) => {
+    checkoutMovie = () => {
 
-    //             console.log(response.data);
+        const checkoutParams = {
+            customer_id: this.props.rentalCustomer.id,
+            due_date: this.addDays(Date.now(), 7)
+        };
+
+        console.log('Checkout date:', checkoutParams.due_date);
+
+
+        console.log('selected customer in rental:', checkoutParams.customer_id);
+
+        axios.post(`http://localhost:3000/rentals/${this.props.rentalMovie.title}/check-out`, checkoutParams)
+            .then((response) => {
+
+                console.log(response.data);
 
                 
-    //         })
+            })
         
 
-    // }
+    }
 
     render() {
         const { rentalCustomer, rentalMovie } = this.props;
@@ -44,7 +55,7 @@ class Rental extends Component {
                 {rentalCustomer && <div>{rentalCustomer.name}</div>}
 
                 <div>
-                    <button type='button' onClick={this.rentMovie}>Checkout Movie</button>
+                    <button type='button' onClick={this.checkoutMovie}>Checkout Movie</button>
                 </div>
             </div>
         )
