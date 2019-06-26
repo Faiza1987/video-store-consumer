@@ -56,18 +56,23 @@ const Library = (props) => {
 
     const mappedMovies = movies.map((movie, i) => {
       return(
-        <button key={i} onClick={onSelectMovie(movie.id)} className="movie-button"> {movie.title} </button>
+        <div key={i}>
+          <div  
+            onClick={onSelectMovie(movie.id)}> 
+              {movie.title} 
+          </div>
+        </div>
       );
     });
     return(
       <div>
-        <section>
-          <button type='button' onClick={this.toggleDisplayMovieList}>
+        <section >
+          <button type='button' onClick={this.toggleDisplayMovieList} className="movie-list">
             See All Movies
           </button>
         </section>
       
-        {displayMovieList && <section>
+        {displayMovieList && <section className="movies">
           {mappedMovies}
         </section>}
       </div>
