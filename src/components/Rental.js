@@ -8,22 +8,26 @@ class Rental extends Component {
         super(props);
     }
 
-    // componentDidMount(props) {
-    //     console.log('I mounted! Here are my props: ', props);
-    // };
-
-
-
-      addDays = (date, days) => {
+    
+    
+    
+    addDays = (date, days) => {
         let result = new Date(date);
         result.setDate(result.getDate() + days);
         return result;
-      }
+    }
     //   from https://stackoverflow.com/questions/563406/add-days-to-javascript-date
-
-
+    
+    
     // rentMovie = (movie, customer) => {
+    //     axios.post(`http://localhost:3000/rentals/${movie}/check-out`, movie, customer, this.addDays(Date.now(), 7))
+    //         .then((response) => {
 
+    //             console.log(response.data);
+
+                
+    //         })
+        
 
     // }
 
@@ -34,8 +38,14 @@ class Rental extends Component {
 
         return (
             <div>
+                <div>Create a Rental</div>
+                
                 {rentalMovie && <div>{rentalMovie.title}</div>}
                 {rentalCustomer && <div>{rentalCustomer.name}</div>}
+
+                <div>
+                    <button type='button' onClick={this.rentMovie}>Checkout Movie</button>
+                </div>
             </div>
         )
     }
