@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import axios from 'axios';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import Search from './components/Search';
 import Rental from './components/Rental';
 import './App.css';
+  
 
 
 
@@ -19,6 +19,7 @@ class App extends Component {
       tmdbId: null,
       selectedCustomer: null,
       selectedMovie: null,
+      newMovie: null,
       errorMessage: null,
       rentalInProgress: false
     }
@@ -38,6 +39,14 @@ class App extends Component {
     }
   }
 
+  selectNewMovieFromExternalLibrary = (movie) => {
+    return () => {
+      this.setState({
+        newMovie: movie,
+      });
+    }
+  }
+
   selectCustomer = (customer) => {
     // console.log(id);
     return () => {
@@ -53,12 +62,13 @@ class App extends Component {
     })
     console.log('hi', this.state.allCustomers);
   }
-  
 
   render() {
-    console.log('Movie object: ', this.state.selectedMovie);
+    // console.log('Movie object: ', this.state.selectedMovie);
 
-    console.log('Customer object: ', this.state.selectedCustomer);
+    console.log('NEW Movie object: ', this.state.newMovie);
+
+    // console.log('Customer object: ', this.state.selectedCustomer);
 
     const {allCustomers, allMovies, selectedCustomer, selectedMovie} = this.state;
 
@@ -111,7 +121,9 @@ class App extends Component {
           <Route path="/search" 
             render={(props) => 
               <Search 
-              
+                onSelectMovie={this.selectNewMovieFromExternalLibrary}
+                newMovie={this.state.newMovie}
+                movies={allMovies}
               />
             }
           />

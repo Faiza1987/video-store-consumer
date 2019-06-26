@@ -27,7 +27,6 @@ class Library extends Component {
   }
 
   toggleDisplayMovieList = (props) => {
-    console.log("I'm in toggleAllMovies Function!");
     this.setState({
       displayMovieList: !this.state.displayMovieList,
     });
