@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { thisExpression } from '@babel/types';
 
 const SEARCH_MOVIES = "http://localhost:3000/movies?query="
 // const ADD_MOVIE = "http://localhost:3000/movies/"
@@ -76,19 +77,28 @@ class Search extends Component {
 
     console.log('NEW MOVIE DATA: ', newMovieData);
 
-    axios.post("http://localhost:3000/movies/", newMovieData)
-      .then((response) => {
+    const {allMovies} = this.props;
 
-        console.log("This is what response.data looks like from the API on a successful response", response.data);
-        
-        
+    for(let movie in allMovies){
 
-      })
-      .catch((error) => {
-        this.setState({
-          errorMessage: error.message,
-        })
-      })
+      if(movie.title !== this.props.newMovie.title){
+
+        axios.post("http://localhost:3000/movies/", newMovieData)
+          .then((response) => {
+    
+            console.log("This is what response.data looks like from the API on a successful response", response.data);
+    
+          })
+          .catch((error) => {
+            this.setState({
+              errorMessage: error.message,
+            })
+          })
+      } else {
+        console.log('Movie already exists');
+      }
+    }
+
   }
 
   render(){
