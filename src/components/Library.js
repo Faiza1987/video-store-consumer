@@ -53,9 +53,7 @@ class Library extends Component {
         {displayMovieList && <section>
           {mappedMovies}
         </section>}
-  
       </div>
-      
     );
   }
 }

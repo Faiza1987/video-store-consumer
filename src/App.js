@@ -18,41 +18,14 @@ class App extends Component {
       customerId: null,
       movieId: null,
       errorMessage: null,
-      // displayStatus: false
     }
   }
-
-
-  // componentDidMount() {
-  //   axios.get('http://localhost:3000/movies')
-  //     .then((response) => {
-
-
-  //       this.setState({
-  //         allMovies: response.data,
-  //       });
-
-  //     })
-  //     .catch((error) => {
-  //       this.setState({
-  //         errorMessage: error.message
-  //       })
-  //     })
-  // }
 
   setAllMovies = (moviesArray) => {
     this.setState({
       allMovies: moviesArray,
     });
   }
-  
-  
-  // toggleDisplayMovieList = () => {
-  //   console.log("I'm in toggleAllMovies Function!");
-  //   this.setState({
-  //     displayMovieList: !this.state.displayMovieList,
-  //   });
-  // }
   
   selectMovie = (id) => {
     return () => {
@@ -107,13 +80,13 @@ class App extends Component {
             } 
           />
           <Route path="/customers"
-          render={(props) => 
-            <Customers
-            setAllCustomersCallback={this.setAllCustomers}
-            customers={allCustomers}
-            isAuthed = {true}
-          />
-          }
+            render={(props) => 
+              <Customers
+                setAllCustomersCallback={this.setAllCustomers}
+                customers={allCustomers}
+                isAuthed={true}
+              />
+            }
           />
         </div>
       </Router>
