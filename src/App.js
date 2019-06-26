@@ -63,16 +63,21 @@ class App extends Component {
     }
   }
 
-  selectCustomer = (customer) => {
-    this.setState({
-      customerId: customer.id,
+  selectCustomer = (id) => {
+    // console.log(id);
+    return () => {
+      this.setState({
+      customerId: id,
     })
   }
+}
   
   
 
   render() {
-    console.log(this.state.movieId);
+    console.log('Movie id: ', this.state.movieId);
+
+    console.log('Customer id: ', this.state.customerId);
 
     const {allCustomers, allMovies} = this.state;
 
