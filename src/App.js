@@ -64,9 +64,9 @@ class App extends Component {
   }
 
   render() {
-    // console.log('Movie object: ', this.state.selectedMovie);
+    console.log('Movie object: ', this.state.selectedMovie);
 
-    console.log('NEW Movie object: ', this.state.newMovie);
+    // console.log('NEW Movie object: ', this.state.newMovie);
 
     // console.log('Customer object: ', this.state.selectedCustomer);
 
