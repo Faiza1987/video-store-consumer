@@ -62,6 +62,12 @@ class App extends Component {
       });
     }
   }
+
+  selectCustomer = (customer) => {
+    this.setState({
+      customerId: customer.id,
+    })
+  }
   
   
 
@@ -105,6 +111,7 @@ class App extends Component {
             <Customers
             setAllCustomersCallback={this.setAllCustomers}
             customers={allCustomers}
+            selectCustomerCallback={this.selectCustomer}
             isAuthed = {true}
           />
           }

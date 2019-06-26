@@ -30,6 +30,12 @@ class Customers extends Component {
             displayCustomerList: true
         })
     }
+
+    onClickSelectCustomer = (event) => {
+        // this.props.selectCustomerCallback(customer);
+
+        console.log('Customer ID is:', event.currentTarget)
+    }
     
     
     render() {
@@ -39,8 +45,8 @@ class Customers extends Component {
 
         const mappedCustomers = customers.map((customer, i) => {
             return (
-                <div key={i}>
-                    <div>{customer.name}</div>
+                <div key={i} >
+                    <div onClick={this.onClickSelectCustomer}>{customer.id}{customer.name}</div>
                 </div>
             )
         });
