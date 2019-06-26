@@ -77,11 +77,11 @@ class Search extends Component {
 
     console.log('NEW MOVIE DATA: ', newMovieData);
 
-    const {allMovies} = this.props;
+    const {movies} = this.props;
 
-    for(let movie in allMovies){
+    for(let movie in movies){
 
-      if(movie.title !== this.props.newMovie.title){
+      if(movie.title !== newMovieData.title){
 
         axios.post("http://localhost:3000/movies/", newMovieData)
           .then((response) => {
@@ -94,6 +94,7 @@ class Search extends Component {
               errorMessage: error.message,
             })
           })
+          break;
       } else {
         console.log('Movie already exists');
       }
