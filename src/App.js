@@ -4,6 +4,7 @@ import axios from 'axios';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import Search from './components/Search';
+import Rental from './components/Rental';
 import './App.css';
 
 
@@ -16,9 +17,10 @@ class App extends Component {
       allCustomers: [],
       allMovies: [],
       tmdbId: null,
-      customerId: null,
-      movieId: null,
+      selectedCustomer: null,
+      selectedMovie: null,
       errorMessage: null,
+      rentalInProgress: false
     }
   }
 
@@ -28,19 +30,19 @@ class App extends Component {
     });
   }
   
-  selectMovie = (id) => {
+  selectMovie = (movie) => {
     return () => {
       this.setState({
-        movieId: id,
+        selectedMovie: movie,
       });
     }
   }
 
-  selectCustomer = (id) => {
+  selectCustomer = (customer) => {
     // console.log(id);
     return () => {
       this.setState({
-      customerId: id,
+      selectedCustomer: customer,
     })
   }
 }
@@ -54,11 +56,11 @@ class App extends Component {
   
 
   render() {
-    console.log('Movie id: ', this.state.movieId);
+    console.log('Movie object: ', this.state.selectedMovie);
 
-    console.log('Customer id: ', this.state.customerId);
+    console.log('Customer object: ', this.state.selectedCustomer);
 
-    const {allCustomers, allMovies} = this.state;
+    const {allCustomers, allMovies, selectedCustomer, selectedMovie} = this.state;
 
     return(
       <Router>
@@ -82,6 +84,10 @@ class App extends Component {
           </ul>
 
           <hr />
+
+          <div><Rental 
+          rentalCustomer={selectedCustomer}
+          rentalMovie={selectedMovie} /></div>
 
           <Route path="/" />
           <Route path="/movies" 
