@@ -5,6 +5,7 @@ import Customers from './components/Customers';
 import Search from './components/Search';
 import Rental from './components/Rental';
 import './App.css';
+  
 
 
 
@@ -18,6 +19,7 @@ class App extends Component {
       tmdbId: null,
       selectedCustomer: null,
       selectedMovie: null,
+      newMovie: null,
       errorMessage: null,
       rentalInProgress: false
     }
@@ -33,6 +35,14 @@ class App extends Component {
     return () => {
       this.setState({
         selectedMovie: movie,
+      });
+    }
+  }
+
+  selectNewMovieFromExternalLibrary = (movie) => {
+    return () => {
+      this.setState({
+        newMovie: movie,
       });
     }
   }
@@ -54,9 +64,11 @@ class App extends Component {
   }
 
   render() {
-    console.log('Movie object: ', this.state.selectedMovie);
+    // console.log('Movie object: ', this.state.selectedMovie);
 
-    console.log('Customer object: ', this.state.selectedCustomer);
+    console.log('NEW Movie object: ', this.state.newMovie);
+
+    // console.log('Customer object: ', this.state.selectedCustomer);
 
     const {allCustomers, allMovies, selectedCustomer, selectedMovie} = this.state;
 
@@ -109,8 +121,8 @@ class App extends Component {
           <Route path="/search" 
             render={(props) => 
               <Search 
-                onSelectMovie={this.selectMovie}
-                movieId={this.movieId}
+                onSelectMovie={this.selectNewMovieFromExternalLibrary}
+                newMovie={this.state.newMovie}
                 movies={allMovies}
               />
             }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 const SEARCH_MOVIES = "http://localhost:3000/movies?query="
-const ADD_MOVIE = "http://localhost:3000/movies"
+// const ADD_MOVIE = "http://localhost:3000/movies/"
 
 class Search extends Component {
   constructor(props){
@@ -65,8 +65,30 @@ class Search extends Component {
   }
   
   // NEEDS TO MAKE A POST REQUEST FOR SELECTED MOVIE FROM SEARCH RESULTS TO BE ADDED TO LIBRARY!
-  addMovie = (movieId) => {
-    
+  addMovie = () => {
+    const newMovieData = {
+      title: this.props.newMovie.title,
+      overview: this.props.newMovie.overview,
+      release_date: this.props.newMovie.release_date,
+      image_url: this.props.newMovie.image_url,
+      external_id: this.props.newMovie.external_id,
+    };
+
+    console.log('NEW MOVIE DATA: ', newMovieData);
+
+    axios.post("http://localhost:3000/movies/", newMovieData)
+      .then((response) => {
+
+        console.log("This is what response.data looks like from the API on a successful response", response.data);
+        
+        
+
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: error.message,
+        })
+      })
   }
 
   render(){
@@ -79,6 +101,7 @@ class Search extends Component {
         </div>
       );
     });
+
     return(
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -101,6 +124,24 @@ class Search extends Component {
         </form>
 
         <div>{allResults}</div>
+
+        <hr />
+
+
+      
+        {this.props.newMovie && <section>
+          <div>Title: {this.props.newMovie.title}</div>,
+          <div>Overview: {this.props.newMovie.overview}</div>
+          <div>Release date: {this.props.newMovie.release_date}</div>
+        
+          <div>
+            <button type="button" onClick={this.addMovie}> Add Movie </button>
+          </div>
+        </section>}
+
+      
+
+
       </div>
     );
 
