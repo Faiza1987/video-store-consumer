@@ -45,7 +45,7 @@ class App extends Component {
   
 
   render() {
-    console.log(this.state.movieId);
+    console.log('Movie id: ', this.state.movieId);
 
     const {allCustomers, allMovies} = this.state;
 

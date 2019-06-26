@@ -39,7 +39,12 @@ class Library extends Component {
 
     const mappedMovies = movies.map((movie, i) => {
       return(
-        <button key={i} onClick={onSelectMovie(movie.id)} className="movie-button"> {movie.title} </button>
+        <div key={i}>
+          <div  
+            onClick={onSelectMovie(movie.id)}> 
+              {movie.title} 
+          </div>
+        </div>
       );
     });
     return(
