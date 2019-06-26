@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import axios from 'axios';
 import Library from './components/Library';
 import Customers from './components/Customers';
 import Search from './components/Search';
@@ -18,6 +17,7 @@ class App extends Component {
       tmdbId: null,
       customerId: null,
       movieId: null,
+      selectedMovie: null,,
       errorMessage: null,
     }
   }
@@ -42,7 +42,6 @@ class App extends Component {
     })
     console.log('hi', this.state.allCustomers);
   }
-  
 
   render() {
     console.log('Movie id: ', this.state.movieId);
@@ -95,7 +94,9 @@ class App extends Component {
           <Route path="/search" 
             render={(props) => 
               <Search 
-              
+                onSelectMovie={this.selectMovie}
+                movieId={this.movieId}
+                movies={allMovies}
               />
             }
           />
