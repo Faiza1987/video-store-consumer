@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Library from './components/Library';
 import Customers from './components/Customers';
 import Search from './components/Search';
+import Rental from './components/Rental';
 import './App.css';
 
 
@@ -15,10 +16,10 @@ class App extends Component {
       allCustomers: [],
       allMovies: [],
       tmdbId: null,
-      customerId: null,
-      movieId: null,
-      selectedMovie: null,,
+      selectedCustomer: null,
+      selectedMovie: null,
       errorMessage: null,
+      rentalInProgress: false
     }
   }
 
@@ -28,13 +29,22 @@ class App extends Component {
     });
   }
   
-  selectMovie = (id) => {
+  selectMovie = (movie) => {
     return () => {
       this.setState({
-        movieId: id,
+        selectedMovie: movie,
       });
     }
   }
+
+  selectCustomer = (customer) => {
+    // console.log(id);
+    return () => {
+      this.setState({
+      selectedCustomer: customer,
+    })
+  }
+}
   
   setAllCustomers = (customerArray) => {
     this.setState({
@@ -44,9 +54,11 @@ class App extends Component {
   }
 
   render() {
-    console.log('Movie id: ', this.state.movieId);
+    console.log('Movie object: ', this.state.selectedMovie);
 
-    const {allCustomers, allMovies} = this.state;
+    console.log('Customer object: ', this.state.selectedCustomer);
+
+    const {allCustomers, allMovies, selectedCustomer, selectedMovie} = this.state;
 
     return(
       <Router>
@@ -71,6 +83,10 @@ class App extends Component {
 
           <hr />
 
+          <div><Rental 
+          rentalCustomer={selectedCustomer}
+          rentalMovie={selectedMovie} /></div>
+
           <Route path="/" />
           <Route path="/movies" 
             render={(props) => 
@@ -83,14 +99,13 @@ class App extends Component {
             } 
           />
           <Route path="/customers"
-            render={(props) => 
-              <Customers
-                setAllCustomersCallback={this.setAllCustomers}
-                customers={allCustomers}
-                isAuthed={true}
-              />
-            }
-          />
+          render={(props) => 
+            <Customers
+            setAllCustomersCallback={this.setAllCustomers}
+            customers={allCustomers}
+            selectCustomerCallback={this.selectCustomer}
+            isAuthed = {true}
+          />}/>
           <Route path="/search" 
             render={(props) => 
               <Search 
@@ -105,6 +120,7 @@ class App extends Component {
 
     );
   }
-  }
+}
+
 
 export default App;

@@ -40,7 +40,7 @@ class Library extends Component {
       return(
         <div key={i}>
           <div  
-            onClick={onSelectMovie(movie.id)}> 
+            onClick={onSelectMovie(movie)}> 
               {movie.title} 
           </div>
         </div>
