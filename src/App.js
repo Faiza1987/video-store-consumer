@@ -22,6 +22,8 @@ class App extends Component {
       newMovie: null,
       errorMessage: null,
       successMessage: null,
+      newMovieAddedSuccessMessage: null,
+      newMovieNotAddedErrorMessage: null,
     }
   }
 
@@ -46,6 +48,13 @@ class App extends Component {
         newMovie: movie,
       });
     }
+  }
+
+  clearNewMovieFromExternalLibraryDetails = (movie) => {
+    this.setState({
+      newMovie: null,
+      newMovieAddedSuccessMessage: `${this.state.newMovie.title} was successfully added to the library!`
+    });
   }
 
   selectCustomer = (customer) => {
@@ -133,12 +142,14 @@ class App extends Component {
             selectCustomerCallback={this.selectCustomer}
             isAuthed = {true}
           />}/>
+          
           <Route path="/search" 
             render={(props) => 
               <Search 
                 onSelectMovie={this.selectNewMovieFromExternalLibrary}
                 newMovie={this.state.newMovie}
                 movies={allMovies}
+                clearNewMovieFromExternalLibraryDetailsCallback={this.clearNewMovieFromExternalLibraryDetails}
               />
             }
           />

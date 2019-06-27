@@ -71,7 +71,7 @@ class Search extends Component {
       title: this.props.newMovie.title,
       overview: this.props.newMovie.overview,
       release_date: this.props.newMovie.release_date,
-      image_url: this.props.newMovie.image_url,
+      image_url: this.props.newMovie.image_url.slice(31),
       external_id: this.props.newMovie.external_id,
     };
 
@@ -100,6 +100,11 @@ class Search extends Component {
       }
     }
 
+  }
+
+  addMovieAndClearDetails = () => {
+    this.addMovie();
+    this.props.clearNewMovieFromExternalLibraryDetailsCallback();
   }
 
   render(){
@@ -141,12 +146,14 @@ class Search extends Component {
 
       
         {this.props.newMovie && <section>
-          <div>Title: {this.props.newMovie.title}</div>,
+          <img src={`${this.props.newMovie.image_url}`} alt={`${this.props.newMovie.title}`} />
+          <div>{this.props.newMovie.image_url}</div>
+          <div>Title: {this.props.newMovie.title}</div>
           <div>Overview: {this.props.newMovie.overview}</div>
           <div>Release date: {this.props.newMovie.release_date}</div>
         
           <div>
-            <button type="button" onClick={this.addMovie}> Add Movie </button>
+            <button type="button" onClick={this.addMovieAndClearDetails}> Add Movie </button>
           </div>
         </section>}
 

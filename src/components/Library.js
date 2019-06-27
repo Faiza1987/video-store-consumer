@@ -7,7 +7,7 @@ class Library extends Component {
     super(props);
 
     this.state = {
-      displayMovieList: false
+      displayMovieList: true
     }
   }
   
@@ -26,11 +26,11 @@ class Library extends Component {
       })
   }
 
-  toggleDisplayMovieList = (props) => {
-    this.setState({
-      displayMovieList: !this.state.displayMovieList,
-    });
-  }
+  // toggleDisplayMovieList = (props) => {
+  //   this.setState({
+  //     displayMovieList: !this.state.displayMovieList,
+  //   });
+  // }
   
   render() {
     const {displayMovieList} = this.state;
@@ -48,11 +48,11 @@ class Library extends Component {
     });
     return(
       <div>
-        <section >
+        {/* <section >
           <button type='button' onClick={this.toggleDisplayMovieList} className="movie-list">
             See All Movies
           </button>
-        </section>
+        </section> */}
       
         {displayMovieList && <section className="movies">
           {mappedMovies}
