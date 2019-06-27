@@ -1,4 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
+
 .App {
+  text-align: center;
+}
+
+body {
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.title {
+  font-family: 'Monoton', cursive;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 4.5em;
+}
+
+.sub-heading {
   text-align: center;
 }
 
@@ -33,5 +51,5 @@
 }
 
 .nav ul li{
-  padding-left: 6em;
+  padding-left: 12em;
 }

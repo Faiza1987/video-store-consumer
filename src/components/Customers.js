@@ -39,9 +39,11 @@ class Customers extends Component {
 
         const mappedCustomers = customers.map((customer, i) => {
             return (
-                <div key={i} >
-                    <div onClick={this.props.selectCustomerCallback(customer)}>{customer.name}</div>
-                </div>
+                <tr key={i} onClick={this.props.selectCustomerCallback(customer)} >
+                    <td>{customer.id}</td>
+                    <td>{customer.name}</td>
+                    <td>{customer.phone}</td>
+                </tr>
             )
         });
 
@@ -49,9 +51,14 @@ class Customers extends Component {
         return (
 
             <div>
-                {displayCustomerList && <div>
+                {displayCustomerList && <table className="customers-table">
+                    <tr>
+                        <th>Id #</th>
+                        <th>Full Name</th>
+                        <th>Phone Number</th>
+                    </tr>
                     {mappedCustomers}
-                </div>}
+                </table>}
 
                 {/* <button type='button' onClick={this.onClickListCustomers}>List all Customers</button> */}
 
