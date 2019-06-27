@@ -8,17 +8,17 @@ class Rental extends Component {
         super(props);
     }
 
-    
-    
-    
+
+
+
     addDays = (date, days) => {
         let result = new Date(date);
         result.setDate(result.getDate() + days);
         return result;
     }
     //   from https://stackoverflow.com/questions/563406/add-days-to-javascript-date
-    
-    
+
+
     checkoutMovie = () => {
 
         const checkoutParams = {
@@ -34,12 +34,14 @@ class Rental extends Component {
         axios.post(`http://localhost:3000/rentals/${this.props.rentalMovie.title}/check-out`, checkoutParams)
             .then((response) => {
 
-                console.log(response.data);
 
-                
             })
-        
+    }
 
+    wrapper = () => {
+
+        this.checkoutMovie();
+        this.props.clearRentalDetailsCallback();
     }
 
     render() {
@@ -49,13 +51,33 @@ class Rental extends Component {
 
         return (
             <div>
-                <div>Create a Rental</div>
-                
-                {rentalMovie && <div>{rentalMovie.title}</div>}
-                {rentalCustomer && <div>{rentalCustomer.name}</div>}
 
                 <div>
-                    <button type='button' onClick={this.checkoutMovie}>Checkout Movie</button>
+                    <h3>Checkout A Movie</h3>
+
+
+                    {rentalMovie && <div>
+                        <h4>Movie</h4>
+                        <img src={rentalMovie.image_url} alt={`${rentalMovie.title}`} />
+                        <div>Title: {rentalMovie.title}</div>
+                        <div>Summary: {rentalMovie.overview}</div>
+                        <div>Release Date: {rentalMovie.release_date}</div>
+                    </div>}
+
+                    {rentalCustomer && <div>
+                        <h4>Customer</h4>
+                        <div>ID #: {rentalCustomer.id}</div>
+                        <div>Name: {rentalCustomer.name}</div>
+                        <div>Phone: {rentalCustomer.phone}</div>
+                        <div>Credit: ${rentalCustomer.account_credit}</div>
+                        <div>Movies Checkout Out: {rentalCustomer.movies_checked_out_count}</div>
+
+                    </div>}
+                    
+                </div>
+
+                <div>
+                    <button type='button' onClick={this.wrapper}>Checkout Movie</button>
                 </div>
             </div>
         )

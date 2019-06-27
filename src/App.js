@@ -21,7 +21,7 @@ class App extends Component {
       selectedMovie: null,
       newMovie: null,
       errorMessage: null,
-      rentalInProgress: false
+      successMessage: null,
     }
   }
 
@@ -35,6 +35,7 @@ class App extends Component {
     return () => {
       this.setState({
         selectedMovie: movie,
+        successMessage: null,
       });
     }
   }
@@ -52,6 +53,7 @@ class App extends Component {
     return () => {
       this.setState({
       selectedCustomer: customer,
+      successMessage: null,
     })
   }
 }
@@ -63,6 +65,16 @@ class App extends Component {
     console.log('hi', this.state.allCustomers);
   }
 
+  clearRentalDetails = () => {
+  //  return () => {
+    this.setState({
+      selectedCustomer: null,
+      selectedMovie: null,
+      successMessage: 'Successful rental!'
+    })
+  }
+  // }
+
   render() {
     console.log('Movie object: ', this.state.selectedMovie);
 
@@ -70,7 +82,7 @@ class App extends Component {
 
     // console.log('Customer object: ', this.state.selectedCustomer);
 
-    const {allCustomers, allMovies, selectedCustomer, selectedMovie} = this.state;
+    const {allCustomers, allMovies, selectedCustomer, selectedMovie, successMessage } = this.state;
 
     return(
       <Router>
@@ -95,9 +107,12 @@ class App extends Component {
 
           <hr />
 
-          <div><Rental 
+          {successMessage && <div>{`${successMessage}`}</div>}
+          
+          {(selectedCustomer || selectedMovie) && <div className='rentalSummary'><Rental 
           rentalCustomer={selectedCustomer}
-          rentalMovie={selectedMovie} /></div>
+          rentalMovie={selectedMovie}
+          clearRentalDetailsCallback={this.clearRentalDetails} /></div>}
 
           <Route path="/" />
           <Route path="/movies" 

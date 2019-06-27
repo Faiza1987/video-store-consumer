@@ -7,7 +7,7 @@ class Customers extends Component {
         super(props);
 
         this.state = {
-            displayCustomerList: false
+            displayCustomerList: true
         }
 
     }
@@ -25,11 +25,11 @@ class Customers extends Component {
     }
 
 
-    onClickListCustomers = (props) => {
-        this.setState({
-            displayCustomerList: true
-        })
-    }
+    // onClickListCustomers = (props) => {
+    //     this.setState({
+    //         displayCustomerList: true
+    //     })
+    // }
 
     
     render() {
@@ -53,7 +53,7 @@ class Customers extends Component {
                     {mappedCustomers}
                 </div>}
 
-                <button type='button' onClick={this.onClickListCustomers}>List all Customers</button>
+                {/* <button type='button' onClick={this.onClickListCustomers}>List all Customers</button> */}
 
             </div >
 
