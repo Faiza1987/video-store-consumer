@@ -38,7 +38,7 @@ class Rental extends Component {
             })
     }
 
-    wrapper = () => {
+    wrapperCheckoutProcess = () => {
 
         this.checkoutMovie();
         this.props.clearRentalDetailsCallback();
@@ -77,7 +77,7 @@ class Rental extends Component {
                 </div>
 
                 <div>
-                    <button type='button' onClick={this.wrapper}>Checkout Movie</button>
+                    <button type='button' onClick={this.wrapperCheckoutProcess}>Checkout Movie</button>
                 </div>
             </div>
         )
