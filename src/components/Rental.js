@@ -56,7 +56,7 @@ class Rental extends Component {
                     <h3>Checkout A Movie</h3>
 
 
-                    {rentalMovie && <div>
+                    {rentalMovie && <div className="rental-movie">
                         <h4>Movie</h4>
                         <img src={rentalMovie.image_url} alt={`${rentalMovie.title}`} />
                         <div>Title: {rentalMovie.title}</div>
@@ -64,7 +64,7 @@ class Rental extends Component {
                         <div>Release Date: {rentalMovie.release_date}</div>
                     </div>}
 
-                    {rentalCustomer && <div>
+                    {rentalCustomer && <div className="rental-customer">
                         <h4>Customer</h4>
                         <div>ID #: {rentalCustomer.id}</div>
                         <div>Name: {rentalCustomer.name}</div>

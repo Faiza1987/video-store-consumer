@@ -84,6 +84,8 @@ class App extends Component {
   }
   // }
 
+
+
   render() {
     console.log('Movie object: ', this.state.selectedMovie);
 
@@ -94,6 +96,7 @@ class App extends Component {
     const {allCustomers, allMovies, selectedCustomer, selectedMovie, successMessage } = this.state;
 
     return(
+      <div>
       <Router>
         <div className="nav">
           <ul>
@@ -116,6 +119,8 @@ class App extends Component {
 
           <hr />
 
+
+
           {successMessage && <div>{`${successMessage}`}</div>}
           
           {(selectedCustomer || selectedMovie) && <div className='rentalSummary'><Rental 
@@ -123,7 +128,8 @@ class App extends Component {
           rentalMovie={selectedMovie}
           clearRentalDetailsCallback={this.clearRentalDetails} /></div>}
 
-          <Route path="/" />
+          
+          <Route path="/" exact component={Title}/>
           <Route path="/movies" 
             render={(props) => 
               <Library 
@@ -155,10 +161,18 @@ class App extends Component {
           />
         </div>
       </Router>
-
+    </div>
     );
   }
 }
 
+function Title() {
+  return (
+      <section>
+        <div className="title">Heaza Video Store </div>
+        <p className="sub-heading">Est. 1987</p>
+      </section>
+  );
+}
 
 export default App;

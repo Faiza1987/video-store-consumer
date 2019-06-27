@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { thisExpression } from '@babel/types';
+import './Search.css';
 
 const SEARCH_MOVIES = "http://localhost:3000/movies?query="
-// const ADD_MOVIE = "http://localhost:3000/movies/"
+
 
 class Search extends Component {
   constructor(props){
@@ -135,7 +135,7 @@ class Search extends Component {
           </div>
 
           <div>
-            <button type="submit" > Search! </button>
+            <button type="submit" className="search-button"> Search! </button>
           </div>
         </form>
 
@@ -145,26 +145,21 @@ class Search extends Component {
 
 
       
-        {this.props.newMovie && <section>
-          <img src={`${this.props.newMovie.image_url}`} alt={`${this.props.newMovie.title}`} />
-          <div>{this.props.newMovie.image_url}</div>
-          <div>Title: {this.props.newMovie.title}</div>
-          <div>Overview: {this.props.newMovie.overview}</div>
-          <div>Release date: {this.props.newMovie.release_date}</div>
-        
-          <div>
-            <button type="button" onClick={this.addMovieAndClearDetails}> Add Movie </button>
-          </div>
-        </section>}
 
-      
+        {this.props.newMovie && <div className="movie-card">
 
+          <img src={`${this.props.newMovie.image_url}`} 
+            alt={`${this.props.newMovie.title}`} />
 
+            <h4> {this.props.newMovie.title}</h4>
+            <h5>{this.props.newMovie.overview}</h5>
+            <h5>Release date: {this.props.newMovie.release_date}</h5>
+       
+            <button type="button" onClick={this.addMovieAndClearDetails} className="search-button"> Add Movie </button>
+
+        </div>}
       </div>
     );
-
-
-    
   }
 }
 
