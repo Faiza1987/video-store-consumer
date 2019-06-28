@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 
 .App {
   text-align: center;
@@ -48,8 +49,9 @@ body {
 .nav ul{
   list-style: none;
   display: flex;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .nav ul li{
-  padding-left: 12em;
+  padding-left: 8em;
 }
