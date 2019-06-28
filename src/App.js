@@ -75,28 +75,23 @@ class App extends Component {
   }
 
   clearRentalDetails = () => {
-  //  return () => {
     this.setState({
       selectedCustomer: null,
       selectedMovie: null,
       successMessage: 'Successful rental!'
     })
   }
-  // }
+  
 
 
 
   render() {
-    console.log('Movie object: ', this.state.selectedMovie);
-
-    // console.log('NEW Movie object: ', this.state.newMovie);
-
-    // console.log('Customer object: ', this.state.selectedCustomer);
+    
 
     const {allCustomers, allMovies, selectedCustomer, selectedMovie, successMessage } = this.state;
 
     return(
-      <div>
+      <div className='home-page'>
       <Router>
         <div className="nav">
           <ul>
@@ -119,16 +114,6 @@ class App extends Component {
 
           <hr />
 
-
-
-          {successMessage && <div>{`${successMessage}`}</div>}
-          
-          {(selectedCustomer || selectedMovie) && <div className='rentalSummary'><Rental 
-          rentalCustomer={selectedCustomer}
-          rentalMovie={selectedMovie}
-          clearRentalDetailsCallback={this.clearRentalDetails} /></div>}
-
-          
           <Route path="/" exact component={Title}/>
           <Route path="/movies" 
             render={(props) => 
@@ -160,6 +145,12 @@ class App extends Component {
             }
           />
         </div>
+        {successMessage && <div>{`${successMessage}`}</div>}
+          
+          {(selectedCustomer || selectedMovie) && <div className='rentalSummary'><Rental 
+          rentalCustomer={selectedCustomer}
+          rentalMovie={selectedMovie}
+          clearRentalDetailsCallback={this.clearRentalDetails} /></div>}
       </Router>
     </div>
     );

@@ -53,7 +53,7 @@ class Rental extends Component {
         return (
             <div>
 
-                <div>
+                <div className='rental-info'>
                     <h3>Checkout A Movie</h3>
 
                     {rentalMovie && <div className="rental-movie">
@@ -72,11 +72,13 @@ class Rental extends Component {
                         <div>Credit: ${rentalCustomer.account_credit}</div>
                         <div>Movies Checkout Out: {rentalCustomer.movies_checked_out_count}</div>
                     </div>}
-                    <button type='button' onClick={this.wrapperCheckoutProcess} className="checkout-button">Checkout Movie</button>
+                    <div>
+                        <button type='button' onClick={this.wrapperCheckoutProcess} className="checkout-button">Checkout Movie</button>
+                    </div>
                 </div>
 
                 {/* <div> */}
-                    {/* <button type='button' onClick={this.wrapperCheckoutProcess} className="checkout-button">Checkout Movie</button> */}
+                {/* <button type='button' onClick={this.wrapperCheckoutProcess} className="checkout-button">Checkout Movie</button> */}
                 {/* </div> */}
             </div>
         )

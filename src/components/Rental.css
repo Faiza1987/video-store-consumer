@@ -3,31 +3,29 @@
   flex-direction: column;
   border-style: groove;
   border-width: 1px;
-  border-color: red;
+  border-color: lightslategray;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   padding: 2px 16px;
   transition: 0.3s;
   width: 225px;
   background-color: #F4f2d6;
     float: right;
-  width: 20%;
   padding: 0 10px;
 }
 
 .rental-customer {
-  /* display: flex;
-  flex-direction: column; */
+ 
   border-style: groove;
   border-width: 1px;
-  border-color: red;
+  border-color: lightslategray;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   padding: 2px 16px;
   transition: 0.3s;
   width: 225px;
   background-color: #F4f2d6;
   float: right;
-  width: 20%;
   padding: 0 10px;
+  margin-top: 15px;
 }
 
 .checkout-button {
@@ -38,6 +36,18 @@
   font-family: 'Press Start 2P', cursive;
   font-size: 8pt;
   float: right;
-  width: 20%;
+  /* width: 20%; */
   padding: 0 10px;
+}
+
+.rental-info {
+  margin-top: 80px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-button {
+  margin-top: 15px;
 }
