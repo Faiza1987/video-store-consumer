@@ -142,7 +142,10 @@ class Search extends Component {
         </form>
         <hr />
         <div className="page">
-          <div className="results">{allResults}</div>
+          {this.state.searchResults.length !== 0 && <div className="results">
+            <h4>Search Results: </h4>
+            {allResults}
+          </div>}
 
           {this.props.newMovie && <div className="movie-card">
 

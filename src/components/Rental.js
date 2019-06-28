@@ -9,9 +9,6 @@ class Rental extends Component {
         super(props);
     }
 
-
-
-
     addDays = (date, days) => {
         let result = new Date(date);
         result.setDate(result.getDate() + days);

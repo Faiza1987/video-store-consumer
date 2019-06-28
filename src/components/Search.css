@@ -14,7 +14,7 @@
   border-color: red;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   padding: 2px 16px;
-  margin-left: 37em;
+  margin-left: 40em;
   margin-bottom: 1em;
   transition: 0.3s;
   width: 250px;
@@ -36,6 +36,7 @@ input[type=text] {
 .search-movie {
   text-align: center;
   font-family: 'Monoton', cursive;
+  margin-left: 0em; 
 }
 
 input[type=text] {
@@ -46,6 +47,7 @@ input[type=text] {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  margin-left: 9em;
 }
 
 .search-button {
@@ -58,6 +60,7 @@ input[type=text] {
   border-radius: 4px;
   cursor: pointer;
   font-family: 'Press Start 2P', cursive;
+  margin-left: 9em;
 }
 
 .search-button:hover {

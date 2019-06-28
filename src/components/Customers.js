@@ -25,12 +25,6 @@ class Customers extends Component {
             })
     }
 
-    // onClickListCustomers = (props) => {
-    //     this.setState({
-    //         displayCustomerList: true
-    //     })
-    // }
-
     render() {
         const {displayCustomerList} = this.state;
         const {customers} = this.props;
@@ -54,7 +48,7 @@ class Customers extends Component {
                     </tr>
                     {mappedCustomers}
                 </table>}
-                {/* <button type='button' onClick={this.onClickListCustomers}>List all Customers</button> */}
+                
             </div >
         );
     }
