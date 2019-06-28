@@ -9,7 +9,7 @@
   transition: 0.3s;
   width: 225px;
   background-color: #F4f2d6;
-    float: right;
+  float: right;
   padding: 0 10px;
 }
 
@@ -47,6 +47,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* position: absolute; */
+  /* top: 0;
+  right: 0; */
 }
 
 .checkout-button {
@@ -63,12 +66,10 @@
 
 .rental-movie-overview {
   margin-top: 10pt;
-
 }
 
 .rental-customer div {
   margin-top: 10pt;
-
 }
 
 span {

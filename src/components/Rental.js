@@ -49,7 +49,7 @@ class Rental extends Component {
         console.log(this.addDays(Date.now(), 7));
 
         return (
-            <div>
+            
 
                 <div className='rental-info'>
                     <h3>Checkout A Movie</h3>
@@ -58,7 +58,7 @@ class Rental extends Component {
                         <h4>Movie</h4>
                         <img src={rentalMovie.image_url} alt={`${rentalMovie.title}`} />
                         <div className='rental-movie-title'>{rentalMovie.title}</div>
-                        <div className='rental-movie-overview'>{rentalMovie.overview}</div>
+                        {/* <div className='rental-movie-overview'>{rentalMovie.overview}</div> */}
                         <div className='rental-movie-release-date'>Release Date: {rentalMovie.release_date}</div>
                     </div>}
 
@@ -75,7 +75,7 @@ class Rental extends Component {
                     </div>}
                 </div>
 
-            </div>
+           
         )
     }
 }

@@ -125,7 +125,7 @@ class Search extends Component {
         <form onSubmit={this.handleSubmit} className="search-form">
           
         
-          <div>
+          <div className="search-page">
             <input
               placeholder="Title"
               type="text"
@@ -134,15 +134,17 @@ class Search extends Component {
               // defaultValue={this.state.title}
               onChange={this.onChangeHandler}
           />
-          </div>
-
-          <div>
             <button type="submit" className="search-button"> Search! </button>
           </div>
         </form>
+
         <hr />
-        <div className="page">
-          <div className="results">{allResults}</div>
+
+        <div className="results-container">
+          {this.state.searchResults.length !== 0 && <div className="results">
+            <h4> Search Results </h4>
+            {allResults}
+          </div>}
 
           {this.props.newMovie && <div className="movie-card">
 
