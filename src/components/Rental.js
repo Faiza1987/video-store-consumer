@@ -10,8 +10,6 @@ class Rental extends Component {
     }
 
 
-
-
     addDays = (date, days) => {
         let result = new Date(date);
         result.setDate(result.getDate() + days);
@@ -59,27 +57,24 @@ class Rental extends Component {
                     {rentalMovie && <div className="rental-movie">
                         <h4>Movie</h4>
                         <img src={rentalMovie.image_url} alt={`${rentalMovie.title}`} />
-                        <div>Title: {rentalMovie.title}</div>
-                        <div>Summary: {rentalMovie.overview}</div>
-                        <div>Release Date: {rentalMovie.release_date}</div>
+                        <div className='rental-movie-title'>{rentalMovie.title}</div>
+                        <div className='rental-movie-overview'>{rentalMovie.overview}</div>
+                        <div className='rental-movie-release-date'>Release Date: {rentalMovie.release_date}</div>
                     </div>}
 
                     {rentalCustomer && <div className="rental-customer">
                         <h4>Customer</h4>
-                        <div>ID #: {rentalCustomer.id}</div>
-                        <div>Name: {rentalCustomer.name}</div>
-                        <div>Phone: {rentalCustomer.phone}</div>
-                        <div>Credit: ${rentalCustomer.account_credit}</div>
-                        <div>Movies Checkout Out: {rentalCustomer.movies_checked_out_count}</div>
+                        <div><span>ID: </span>{rentalCustomer.id}</div>
+                        <div><span>Name: </span>{rentalCustomer.name}</div>
+                        <div><span>Phone: </span>{rentalCustomer.phone}</div>
+                        <div><span>Credit: </span>${rentalCustomer.account_credit}</div>
+                        <div><span>Movies Checkout Out: </span>{rentalCustomer.movies_checked_out_count}</div>
                     </div>}
-                    <div>
+                    {(rentalCustomer && rentalMovie) && <div>
                         <button type='button' onClick={this.wrapperCheckoutProcess} className="checkout-button">Checkout Movie</button>
-                    </div>
+                    </div>}
                 </div>
 
-                {/* <div> */}
-                {/* <button type='button' onClick={this.wrapperCheckoutProcess} className="checkout-button">Checkout Movie</button> */}
-                {/* </div> */}
             </div>
         )
     }

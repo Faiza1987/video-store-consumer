@@ -19,7 +19,8 @@
   border-width: 1px;
   border-color: lightslategray;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  padding: 2px 16px;
+  /* padding: 2px 16px; */
+  padding: 10px;
   transition: 0.3s;
   width: 225px;
   background-color: #F4f2d6;
@@ -50,4 +51,26 @@
 
 .checkout-button {
   margin-top: 15px;
+}
+
+.rental-movie-title {
+  font-weight: bold;
+}
+
+.rental-movie-release-date {
+  margin-top: 10pt;
+}
+
+.rental-movie-overview {
+  margin-top: 10pt;
+
+}
+
+.rental-customer div {
+  margin-top: 10pt;
+
+}
+
+span {
+  font-weight: bold;
 }
