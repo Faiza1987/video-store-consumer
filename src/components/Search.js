@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Search.css';
+import PropTypes from 'prop-types';
 
 const SEARCH_MOVIES = "http://localhost:3000/movies?query="
 
@@ -159,5 +160,11 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  movies: PropTypes.array.isRequired,
+  newMovie: PropTypes.object.isRequired,
+  onSelectMovie: PropTypes.func.isRequired
+};
 
 export default Search;

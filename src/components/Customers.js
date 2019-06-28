@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Customers.css';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class Customers extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Customers extends Component {
 
     componentDidMount() {
         console.log('what is this.props', this.props);
-       
+      
         axios.get('http://localhost:3000/customers')
             .then((response) => {
 
@@ -24,16 +25,13 @@ class Customers extends Component {
             })
     }
 
-
     // onClickListCustomers = (props) => {
     //     this.setState({
     //         displayCustomerList: true
     //     })
     // }
 
-    
     render() {
-
         const {displayCustomerList} = this.state;
         const {customers} = this.props;
 
@@ -46,10 +44,7 @@ class Customers extends Component {
                 </tr>
             )
         });
-
-
         return (
-
             <div>
                 {displayCustomerList && <table className="customers-table">
                     <tr>
@@ -59,14 +54,15 @@ class Customers extends Component {
                     </tr>
                     {mappedCustomers}
                 </table>}
-
                 {/* <button type='button' onClick={this.onClickListCustomers}>List all Customers</button> */}
-
             </div >
-
         );
-
     }
 }
 
+Customers.propTypes = {
+    setAllCustomersCallback: PropTypes.func.isRequired,
+    selectCustomerCallback: PropTypes.func.isRequired,
+    customers: PropTypes.array.isRequired
+};
 export default Customers;

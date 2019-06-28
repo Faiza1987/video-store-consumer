@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Rental.css';
 import axios from 'axios';
 import './Rental.css';
-
+import PropTypes from 'prop-types';
 
 class Rental extends Component {
     constructor(props) {
@@ -82,5 +82,13 @@ class Rental extends Component {
         )
     }
 }
+
+
+Rental.propTypes = {
+    rentalCustomer: PropTypes.object.isRequired,
+    rentalMovie: PropTypes.object.isRequired,
+    clearRentalDetailsCallback: PropTypes.func.isRequired
+};
+
 
 export default Rental;

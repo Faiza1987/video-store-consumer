@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Library.css';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class Library extends Component {
   constructor(props) {
@@ -49,5 +50,11 @@ class Library extends Component {
     );
   }
 }
+
+Library.propTypes = {
+  setAllMoviesCallback: PropTypes.func.isRequired,
+  onSelectMovie: PropTypes.func.isRequired,
+  movies: PropTypes.array.isRequired
+};
 
 export default Library;
