@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
+.page {
+  display: flex;
+  flex-direction: row;
+}
 
 .movie-card {
   display: flex;
@@ -10,9 +14,13 @@
   border-color: red;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   padding: 2px 16px;
+  margin-left: 37em;
+  margin-bottom: 1em;
   transition: 0.3s;
-  width: 225px;
+  width: 250px;
   background-color: #F4f2d6;
+  float: right;
+  border-spacing: 1em;
 }
 
 .movie-card:hover {
@@ -63,3 +71,9 @@ input[type=text] {
   width: 50%;
   padding-left: 27em;
 }
+
+.results {
+  padding-left: 1em;
+  width: 20%;
+}
+

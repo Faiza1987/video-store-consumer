@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Rental.css';
 import axios from 'axios';
-
+import './Rental.css';
+import PropTypes from 'prop-types';
 
 class Rental extends Component {
     constructor(props) {
@@ -55,7 +56,6 @@ class Rental extends Component {
                 <div>
                     <h3>Checkout A Movie</h3>
 
-
                     {rentalMovie && <div className="rental-movie">
                         <h4>Movie</h4>
                         <img src={rentalMovie.image_url} alt={`${rentalMovie.title}`} />
@@ -71,17 +71,24 @@ class Rental extends Component {
                         <div>Phone: {rentalCustomer.phone}</div>
                         <div>Credit: ${rentalCustomer.account_credit}</div>
                         <div>Movies Checkout Out: {rentalCustomer.movies_checked_out_count}</div>
-
                     </div>}
-                    
+                    <button type='button' onClick={this.wrapperCheckoutProcess} className="checkout-button">Checkout Movie</button>
                 </div>
 
-                <div>
-                    <button type='button' onClick={this.wrapperCheckoutProcess}>Checkout Movie</button>
-                </div>
+                {/* <div> */}
+                    {/* <button type='button' onClick={this.wrapperCheckoutProcess} className="checkout-button">Checkout Movie</button> */}
+                {/* </div> */}
             </div>
         )
     }
 }
+
+
+Rental.propTypes = {
+    rentalCustomer: PropTypes.object.isRequired,
+    rentalMovie: PropTypes.object.isRequired,
+    clearRentalDetailsCallback: PropTypes.func.isRequired
+};
+
 
 export default Rental;
