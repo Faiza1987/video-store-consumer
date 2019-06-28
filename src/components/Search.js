@@ -120,9 +120,9 @@ class Search extends Component {
 
     return(
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <h3> Search for Movie </h3>
-          <hr />
+          <h3 className="search-movie"> Search for Movie </h3>
+        <form onSubmit={this.handleSubmit} className="search-form">
+          
           <div>
             <input
               placeholder="Title"
