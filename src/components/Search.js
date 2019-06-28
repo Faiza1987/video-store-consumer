@@ -123,6 +123,7 @@ class Search extends Component {
           <h3 className="search-movie"> Search for Movie </h3>
         <form onSubmit={this.handleSubmit} className="search-form">
           
+        
           <div>
             <input
               placeholder="Title"
@@ -138,26 +139,22 @@ class Search extends Component {
             <button type="submit" className="search-button"> Search! </button>
           </div>
         </form>
-
-        <div>{allResults}</div>
-
         <hr />
+        <div className="page">
+          <div className="results">{allResults}</div>
 
+          {this.props.newMovie && <div className="movie-card">
 
-      
+            <img src={`${this.props.newMovie.image_url}`} 
+              alt={`${this.props.newMovie.title}`} />
 
-        {this.props.newMovie && <div className="movie-card">
-
-          <img src={`${this.props.newMovie.image_url}`} 
-            alt={`${this.props.newMovie.title}`} />
-
-            <h4> {this.props.newMovie.title}</h4>
-            <h5>{this.props.newMovie.overview}</h5>
-            <h5>Release date: {this.props.newMovie.release_date}</h5>
-       
-            <button type="button" onClick={this.addMovieAndClearDetails} className="search-button"> Add Movie </button>
-
-        </div>}
+              <h4> {this.props.newMovie.title}</h4>
+              <h5>{this.props.newMovie.overview}</h5>
+              <h5>Release date: {this.props.newMovie.release_date}</h5>
+        
+              <button type="button" onClick={this.addMovieAndClearDetails} className="search-button"> Add Movie </button>
+          </div>}
+        </div>
       </div>
     );
   }
